@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Categories</key>
+	<array>
+		<% @chapters.each do |chapter| %>
+		<dict>
+			<key>key</key>
+			<integer><%= chapter.id %></integer>
+			<key>name</key>
+			<string><%= chapter.chapitres %></string>
+			<key>cards</key>
+			<array>
+				<%= expand(chapter.id_fiches, 4) %>
+			</array>
+		</dict>
+		<% end %>
+	</array>
+	<key>Cards</key>
+	<array>
+		<% @cards.each do |card| %>
+		<dict>
+			<key>key</key>
+			<integer><%= card.id %></integer>
+			<key>title</key>
+			<string><%= card.titre %></string>
+			<key>description</key>
+			<string><%= card.texte %></string>
+			<key>popups</key>
+			<array>
+				<%= expand(card.popups, 4) %>
+			</array>
+			<key>differentialDiagnosis</key>
+			<array>
+				<%= expand(card.diagnostic_differentiels, 4) %>
+			</array>
+			<key>clinicalSigns</key>
+			<array>
+				<%= expand(card.signes_cliniques, 4) %>
+			</array>
+		</dict>
+		<% end %>
+	</array>
+	<key>ClinicalSigns</key>
+	<array>
+		<% @clinical_signs.each do |clinical_sign| %>
+		<dict>
+			<key>key</key>
+			<integer><%= clinical_sign.id %></integer>
+			<key>name</key>
+			<string><%= clinical_sign.signes_cliniques %></string>
+			<key>cards</key>
+			<array>
+				<%= expand(clinical_sign.id_fiches, 4) %>
+			</array>
+		</dict>
+		<% end %>
+	</array>
+	<key>Popups</key>
+	<array>
+		<% @popups.each do |popup| %>
+		<dict>
+			<key>key</key>
+			<integer><%= popup.id %></integer>
+			<key>title</key>
+			<string><%= popup.titre %></string>
+			<key>legend</key>
+			<string><%= popup.legende %></string>
+			<key>source</key>
+			<string><%= popup.source %></string>
+		</dict>
+		<% end %>
+	</array>
+</dict>
+</plist>
